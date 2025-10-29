@@ -72,8 +72,6 @@ impl<'info> Deposit<'info> {
         require!(self.config.locked == false, AmmError::PoolLocked);
         require!(amount != 0, AmmError::InvalidAmount);
 
-        // QUESTION: funding it for the first time? what does this mean?
-        // prelim answer: error checking to ensure that there's no overflow error?
         let (x, y) = match self.mint_lp.supply == 0
             && self.vault_x.amount == 0
             && self.vault_y.amount == 0
@@ -88,7 +86,7 @@ impl<'info> Deposit<'info> {
                     6,
                 )
                 .unwrap();
-                (amounts.x, amounts.y)  // QUESTION: what does this line mean here?
+                (amounts.x, amounts.y) 
             }
         };
 
